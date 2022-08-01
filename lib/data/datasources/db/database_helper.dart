@@ -26,45 +26,37 @@ class DatabaseHelper {
     return db;
   }
 
-  Future<List<Map<String, dynamic>>> getStudentList() async {
+  Future<List<dynamic>> getStudentList() async {
     final db = await database;
-    final List<Map<String, dynamic>> results = await db!;
+    final List<dynamic> results = db!;
 
     return results;
   }
 
-  Future<int> insertWatchlist(MovieTable movie) async {
+  Future<List<dynamic>> getRankList() async {
     final db = await database;
-    return await db!.insert(_tblWatchlist, movie.toJson());
+    final List<dynamic> results = db!;
+
+    return results;
   }
 
-  Future<int> removeWatchlist(MovieTable movie) async {
+  Future<List<dynamic>> getAverage() async {
     final db = await database;
-    return await db!.delete(
-      _tblWatchlist,
-      where: 'id = ?',
-      whereArgs: [movie.id],
-    );
+    final List<dynamic> results = db!;
+
+    return results;
   }
 
-  Future<Map<String, dynamic>?> getMovieById(int id) async {
+  Future<List<dynamic>> getMinimum() async {
     final db = await database;
-    final results = await db!.query(
-      _tblWatchlist,
-      where: 'id = ?',
-      whereArgs: [id],
-    );
+    final List<dynamic> results = db!;
 
-    if (results.isNotEmpty) {
-      return results.first;
-    } else {
-      return null;
-    }
+    return results;
   }
 
-  Future<List<Map<String, dynamic>>> getWatchlistMovies() async {
+  Future<List<dynamic>> getMaximum() async {
     final db = await database;
-    final List<Map<String, dynamic>> results = await db!.query(_tblWatchlist);
+    final List<dynamic> results = db!;
 
     return results;
   }
