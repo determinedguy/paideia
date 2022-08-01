@@ -1,9 +1,9 @@
 import 'package:paideia/data/datasources/db/database_helper.dart';
-import 'package:paideia/data/models/student_model.dart';
+import 'package:paideia/domain/entities/student.dart';
 
 abstract class StudentDataSource {
-  Future<List<StudentModel>> getStudentList();
-  Future<List<StudentModel>> getRankList();
+  Future<List<Student>> getStudentList();
+  Future<List<Student>> getRankList();
   Future<List<String>> getAverage();
   Future<List<String>> getMinimum();
   Future<List<String>> getMaximum();
@@ -16,15 +16,15 @@ class StudentDataSourceImpl implements StudentDataSource {
   StudentDataSourceImpl({required this.databaseHelper});
 
   @override
-  Future<List<StudentModel>> getStudentList() async {
+  Future<List<Student>> getStudentList() async {
     final result = await databaseHelper.getStudentList();
-    return result.map((data) => StudentModel.fromJson(data)).toList();
+    return result.map((data) => Student.fromJson(data)).toList();
   }
 
   @override
-  Future<List<StudentModel>> getRankList() async {
+  Future<List<Student>> getRankList() async {
     final result = await databaseHelper.getRankList();
-    return result.map((data) => StudentModel.fromJson(data)).toList();
+    return result.map((data) => Student.fromJson(data)).toList();
   }
 
   @override

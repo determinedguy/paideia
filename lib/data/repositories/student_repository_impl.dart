@@ -14,13 +14,13 @@ class StudentRepositoryImpl implements StudentRepository {
   @override
   Future<Either<Failure, List<Student>>> getStudentList() async {
     final result = await dataSource.getStudentList();
-    return Right(result.map((model) => model.toEntity()).toList());
+    return Right(result);
   }
 
   @override
   Future<Either<Failure, List<Student>>> getRankList() async {
     final result = await dataSource.getRankList();
-    return Right(result.map((model) => model.toEntity()).toList());
+    return Right(result);
   }
 
   @override
