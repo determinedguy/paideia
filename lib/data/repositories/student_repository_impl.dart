@@ -1,9 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:paideia/data/datasources/student_data_source.dart';
-import 'package:paideia/data/models/student_model.dart';
 import 'package:paideia/domain/entities/student.dart';
 import 'package:paideia/domain/repositories/student_repository.dart';
-import 'package:paideia/common/exception.dart';
 import 'package:paideia/common/failure.dart';
 
 class StudentRepositoryImpl implements StudentRepository {

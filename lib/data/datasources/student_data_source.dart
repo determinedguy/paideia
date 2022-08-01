@@ -1,4 +1,3 @@
-import 'package:paideia/common/exception.dart';
 import 'package:paideia/data/datasources/db/database_helper.dart';
 import 'package:paideia/data/models/student_model.dart';
 
