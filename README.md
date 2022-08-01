@@ -1,16 +1,11 @@
 # paideia
 
-A new Flutter project.
+Paideia (Greek word for "education" or "learning") is Muhammad Athallah's project for Edigy Task Recruitment.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+1. Student data stored in JSON format.
+2. Rank function based on highest score and smallest time taken.
+3. Average, minimum, and maximum function based on each data column.
+4. Static page for viewing the student data and the functions made above.
+5. Relational database diagram containing tables of student, score, question and answer followed by the relations between those three tables, the primary key(s) and the foreign key(s) of each table.
