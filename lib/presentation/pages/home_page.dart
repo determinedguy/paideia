@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:paideia/injection.dart';
+import 'package:paideia/presentation/bloc/student_list/student_list_bloc.dart';
 import 'package:paideia/presentation/widgets/drawer_menu.dart';
+import 'package:paideia/presentation/widgets/student_list.dart';
 
 class HomePage extends StatelessWidget {
   static const routeName = '/home';
+  final StudentListBloc studentListBloc = locator();
 
-  const HomePage({Key? key}) : super(key: key);
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +20,7 @@ class HomePage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => studentListBloc,
-        child: HomeContentSection(),
+        child: const HomeContentSection(),
       ),
     );
   }
@@ -26,8 +30,7 @@ class HomeContentSection extends StatefulWidget {
   const HomeContentSection({Key? key}) : super(key: key);
 
   @override
-  HomeContentSectionState createState() =>
-      HomeContentSectionState();
+  HomeContentSectionState createState() => HomeContentSectionState();
 }
 
 class HomeContentSectionState extends State<HomeContentSection> {
@@ -35,7 +38,7 @@ class HomeContentSectionState extends State<HomeContentSection> {
 
   @override
   void initState() {
-    studentListBloc = BlocProvider.of<studentListBloc>(context);
+    studentListBloc = BlocProvider.of<StudentListBloc>(context);
     studentListBloc.add(LoadStudentListEvent());
     super.initState();
   }
@@ -43,104 +46,25 @@ class HomeContentSectionState extends State<HomeContentSection> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
+      padding: const EdgeInsets.all(8),
       child: BlocBuilder(
         bloc: studentListBloc,
         builder: (context, state) {
           if (state is StudentListInitial) {
-            return Center(
+            return const Center(
               child: CircularProgressIndicator(),
             );
           } else {
             return SingleChildScrollView(
-              child: Column(
+              child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Now Playing',
-                    style: kHeading6,
-                  ),
-                  StudentList(studentListBloc.nowPlaying),
-                  _buildSubHeading(
-                    title: 'Popular',
-                    onTap: () => Navigator.pushNamed(
-                        context, PopularStudentsPage.ROUTE_NAME),
-                  ),
-                  StudentList(studentListBloc.popular),
-                  _buildSubHeading(
-                    title: 'Top Rated',
-                    onTap: () => Navigator.pushNamed(
-                        context, TopRatedStudentsPage.ROUTE_NAME),
-                  ),
-                  StudentList(studentListBloc.topRated),
+                  StudentList(studentListBloc.studentList),
                 ],
               ),
             );
           }
         },
-      ),
-    );
-  }
-
-  Row _buildSubHeading({required String title, required Function() onTap}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: kHeading6,
-        ),
-        InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class StudentList extends StatelessWidget {
-  final List<Student> students;
-
-  StudentList(this.students);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      child: ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) {
-          final student = students[index];
-          return Container(
-            padding: const EdgeInsets.all(8),
-            child: InkWell(
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  StudentDetailPage.ROUTE_NAME,
-                  arguments: student.id,
-                );
-              },
-              child: ClipRRect(
-                borderRadius: BorderRadius.all(Radius.circular(16)),
-                child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${student.posterPath}',
-                  placeholder: (context, url) => Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                  errorWidget: (context, url, error) => Icon(Icons.error),
-                ),
-              ),
-            ),
-          );
-        },
-        itemCount: students.length,
       ),
     );
   }
