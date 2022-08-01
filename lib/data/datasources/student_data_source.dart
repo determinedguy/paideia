@@ -30,18 +30,21 @@ class StudentDataSourceImpl implements StudentDataSource {
   @override
   Future<List<String>> getAverage() async {
     final result = await databaseHelper.getAverage();
-    return result;
+    List<String> dummy = ["halo"];
+    return dummy;
   }
 
   @override
   Future<List<String>> getMinimum() async {
     final result = await databaseHelper.getMinimum();
-    return result;
+    List<String> dummy = ["halo"];
+    return dummy;
   }
 
   @override
   Future<List<String>> getMaximum() async {
     final result = await databaseHelper.getMaximum();
-    return result;
+    List<String> dummy = ["halo"];
+    return dummy;
   }
 }
