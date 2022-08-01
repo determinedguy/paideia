@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: const DrawerMenu(routeName),
       appBar: AppBar(
-        title: const Text('Paideia'),
+        title: const Text('paideia'),
       ),
       body: BlocProvider(
         create: (context) => studentListBloc,
@@ -55,14 +55,7 @@ class HomeContentSectionState extends State<HomeContentSection> {
               child: CircularProgressIndicator(),
             );
           } else {
-            return SingleChildScrollView(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  StudentList(studentListBloc.studentList),
-                ],
-              ),
-            );
+            return StudentList(studentListBloc.studentList);
           }
         },
       ),
