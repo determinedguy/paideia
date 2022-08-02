@@ -16,7 +16,7 @@ class StatsPage extends StatelessWidget {
     return Scaffold(
       drawer: const DrawerMenu(routeName),
       appBar: AppBar(
-        title: const Text('Daftar Rank Siswa'),
+        title: const Text('Statistik'),
       ),
       body: BlocProvider(
         create: (context) => statsBloc,
