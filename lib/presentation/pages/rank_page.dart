@@ -20,20 +20,20 @@ class RankPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => rankListBloc,
-        child: const HomeContentSection(),
+        child: const PageContentSection(),
       ),
     );
   }
 }
 
-class HomeContentSection extends StatefulWidget {
-  const HomeContentSection({Key? key}) : super(key: key);
+class PageContentSection extends StatefulWidget {
+  const PageContentSection({Key? key}) : super(key: key);
 
   @override
-  HomeContentSectionState createState() => HomeContentSectionState();
+  PageContentSectionState createState() => PageContentSectionState();
 }
 
-class HomeContentSectionState extends State<HomeContentSection> {
+class PageContentSectionState extends State<PageContentSection> {
   late RankListBloc rankListBloc;
 
   @override

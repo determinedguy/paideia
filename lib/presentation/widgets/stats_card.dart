@@ -1,10 +1,9 @@
-import 'package:paideia/domain/entities/student.dart';
 import 'package:flutter/material.dart';
 
-class StudentTile extends StatelessWidget {
-  final Student student;
+class StatsCard extends StatelessWidget {
+  final List<String> data;
 
-  const StudentTile(this.student, {Key? key}) : super(key: key);
+  const StatsCard(this.data, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +16,7 @@ class StudentTile extends StatelessWidget {
           child: ListTile(
             // Nama
             title: Text(
-              student.nama,
+              data.elementAt(0),
               style: const TextStyle(fontWeight: FontWeight.bold),
             ),
             trailing: const SizedBox(),
@@ -30,7 +29,7 @@ class StudentTile extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        'Nilai: ${student.nilai}',
+                        'Nilai: ${data.elementAt(1)}',
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),
@@ -45,7 +44,7 @@ class StudentTile extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Text(
-                        'Waktu: ${student.waktu}',
+                        'Waktu: ${data.elementAt(2)}',
                         style: TextStyle(color: Colors.black.withOpacity(0.6)),
                       ),
                     ),

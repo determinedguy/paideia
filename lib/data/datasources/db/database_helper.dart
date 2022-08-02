@@ -32,27 +32,27 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<List<dynamic>> getAverage() async {
+  Future<List<String>> getAverage() async {
     final db = await database;
     var timeAverage = db!.map((m) => m['Waktu']).reduce((a, b) => a + b) / db.length;
     var scoreAverage = db.map((m) => m['Nilai']).reduce((a, b) => a + b) / db.length;
 
-    return [timeAverage, scoreAverage];
+    return ["Rata-Rata", scoreAverage.toString(), timeAverage.toString()];
   }
 
-  Future<List<dynamic>> getMinimum() async {
+  Future<List<String>> getMinimum() async {
     final db = await database;
     var timeMinimum = db!.map((m) => m['Waktu']).reduce((curr, next) => curr < next? curr: next);
     var scoreMinimum = db.map((m) => m['Nilai']).reduce((curr, next) => curr < next? curr: next);
 
-    return [timeMinimum, scoreMinimum];
+    return ["Minimum", scoreMinimum.toString(), timeMinimum.toString()];
   }
 
-  Future<List<dynamic>> getMaximum() async {
+  Future<List<String>> getMaximum() async {
     final db = await database;
     var timeMaximum = db!.map((m) => m['Waktu']).reduce((curr, next) => curr > next? curr: next);
     var scoreMaximum = db.map((m) => m['Nilai']).reduce((curr, next) => curr > next? curr: next);
 
-    return [timeMaximum, scoreMaximum];
+    return ["Maksimum", scoreMaximum.toString(), timeMaximum.toString()];
   }
 }
