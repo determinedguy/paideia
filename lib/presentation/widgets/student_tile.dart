@@ -25,7 +25,7 @@ class StudentTile extends StatelessWidget {
               // Waktu
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 16.0, left: 16.0, right: 16.0, bottom: 8.0),
+                    top: 16.0, right: 16.0, bottom: 8.0),
                 child: Row(
                   children: [
                     Flexible(
@@ -40,7 +40,7 @@ class StudentTile extends StatelessWidget {
               // Nilai
               Padding(
                 padding: const EdgeInsets.only(
-                    top: 8.0, left: 16.0, right: 16.0, bottom: 16.0),
+                    top: 8.0, right: 16.0, bottom: 16.0),
                 child: Row(
                   children: [
                     Flexible(
