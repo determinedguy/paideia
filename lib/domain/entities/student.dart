@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-class Student extends Equatable {
+class Student extends Equatable implements Comparable<Student> {
   const Student({
     required this.no,
     required this.nama,
@@ -26,12 +26,29 @@ class Student extends Equatable {
         "Waktu": waktu,
         "Nilai": nilai,
       };
-  
+
   @override
   List<Object?> get props => [
-    no,
-    nama,
-    waktu,
-    nilai,
-  ];
+        no,
+        nama,
+        waktu,
+        nilai,
+      ];
+
+  @override
+  int compareTo(Student other) {
+    if (nilai < other.nilai) {
+      return -1;
+    } else if (nilai > other.nilai) {
+      return 1;
+    } else {
+      if (waktu > other.waktu) {
+        return -1;
+      } else if (waktu < other.waktu) {
+        return 1;
+      } else {
+        return 0;
+      }
+    }
+  }
 }

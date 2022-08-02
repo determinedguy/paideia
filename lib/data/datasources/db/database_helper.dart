@@ -32,13 +32,6 @@ class DatabaseHelper {
     return results;
   }
 
-  Future<List<dynamic>> getRankList() async {
-    final db = await database;
-    final List<dynamic> results = db!;
-
-    return results;
-  }
-
   Future<List<dynamic>> getAverage() async {
     final db = await database;
     var timeAverage = db!.map((m) => m['Waktu']).reduce((a, b) => a + b) / db.length;

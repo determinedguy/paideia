@@ -7,7 +7,6 @@ abstract class StudentDataSource {
   Future<List<String>> getAverage();
   Future<List<String>> getMinimum();
   Future<List<String>> getMaximum();
-
 }
 
 class StudentDataSourceImpl implements StudentDataSource {
@@ -23,8 +22,10 @@ class StudentDataSourceImpl implements StudentDataSource {
 
   @override
   Future<List<Student>> getRankList() async {
-    final result = await databaseHelper.getRankList();
-    return result.map((data) => Student.fromJson(data)).toList();
+    final result = await databaseHelper.getStudentList();
+    List<Student> data = result.map((data) => Student.fromJson(data)).toList();
+    data.sort();
+    return data;
   }
 
   @override
