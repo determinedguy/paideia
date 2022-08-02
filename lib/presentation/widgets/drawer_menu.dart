@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:paideia/presentation/pages/home_page.dart';
+import 'package:paideia/presentation/pages/rank_page.dart';
 
 class DrawerMenu extends StatelessWidget {
   final String route;
@@ -45,9 +46,9 @@ class DrawerMenu extends StatelessWidget {
                   ListTile(
                     title: const Text('Rank Page'),
                     onTap: () {
-                      route == HomePage.routeName
+                      route == RankPage.routeName
                         ? Navigator.pop(context)
-                        : Navigator.pushReplacementNamed(context, HomePage.routeName);
+                        : Navigator.pushReplacementNamed(context, RankPage.routeName);
                     },
                   ),
                   ListTile(

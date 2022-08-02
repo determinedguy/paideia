@@ -14,7 +14,7 @@ class StudentListLoadedState extends StudentListState {}
 class LoadStudentListFailureState extends StudentListState {
   final String message;
 
-  const LoadStudentListFailureState({
+  LoadStudentListFailureState({
     this.message = "",
   });
 }

@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:paideia/presentation/pages/home_page.dart';
 import 'package:paideia/injection.dart' as di;
+import 'package:paideia/presentation/pages/rank_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +21,8 @@ class MyApp extends StatelessWidget {
           switch (settings.name) {
             case HomePage.routeName:
               return MaterialPageRoute(builder: (_) => HomePage());
+            case RankPage.routeName:
+              return MaterialPageRoute(builder: (_) => RankPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return const Scaffold(

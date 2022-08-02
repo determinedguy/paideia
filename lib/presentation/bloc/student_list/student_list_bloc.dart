@@ -4,7 +4,6 @@ import 'package:paideia/domain/usecases/get_student_list.dart';
 import 'package:equatable/equatable.dart';
 
 part 'student_list_event.dart';
-
 part 'student_list_state.dart';
 
 class StudentListBloc extends Bloc<StudentListEvent, StudentListState> {
@@ -25,22 +24,13 @@ class StudentListBloc extends Bloc<StudentListEvent, StudentListState> {
     Emitter<StudentListState> emit,
   ) async {
     emit(StudentListInitial());
-    final studentListResult = await _getStudentList.execute();
-    int countResult = 0;
-    String errorMessage = "";
-    studentListResult.fold((failure) {
-      errorMessage = failure.message;
-    }, (student) {
-      countResult++;
-      _studentList = student;
-    });
-
-    if (countResult == 1) {
-      emit(StudentListLoadedState());
-    } else {
-      emit(LoadStudentListFailureState(
-        message: errorMessage,
-      ));
-    }
+    final result = await _getStudentList.execute();
+    result.fold(
+        (failure) => emit(LoadStudentListFailureState()),
+        (data) {
+          _studentList = data;
+          emit(StudentListLoadedState());
+        },
+      );
   }
 }

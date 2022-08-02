@@ -37,14 +37,14 @@ class Student extends Equatable implements Comparable<Student> {
 
   @override
   int compareTo(Student other) {
-    if (nilai < other.nilai) {
+    if (nilai > other.nilai) {
       return -1;
-    } else if (nilai > other.nilai) {
+    } else if (nilai < other.nilai) {
       return 1;
     } else {
-      if (waktu > other.waktu) {
+      if (waktu < other.waktu) {
         return -1;
-      } else if (waktu < other.waktu) {
+      } else if (waktu > other.waktu) {
         return 1;
       } else {
         return 0;

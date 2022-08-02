@@ -54,9 +54,17 @@ class HomeContentSectionState extends State<HomeContentSection> {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else {
+          } else if (state is StudentListLoadedState) {
             return StudentList(studentListBloc.studentList);
-          }
+          } else {
+              String message = state is LoadStudentListFailureState
+                  ? state.message
+                  : "Error";
+              return Center(
+                key: const Key('error_message'),
+                child: Text(message),
+              );
+            }
         },
       ),
     );
