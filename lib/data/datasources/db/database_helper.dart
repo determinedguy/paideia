@@ -41,22 +41,25 @@ class DatabaseHelper {
 
   Future<List<dynamic>> getAverage() async {
     final db = await database;
-    final List<dynamic> results = db!;
+    var timeAverage = db!.map((m) => m['Waktu']).reduce((a, b) => a + b) / db.length;
+    var scoreAverage = db.map((m) => m['Nilai']).reduce((a, b) => a + b) / db.length;
 
-    return results;
+    return [timeAverage, scoreAverage];
   }
 
   Future<List<dynamic>> getMinimum() async {
     final db = await database;
-    final List<dynamic> results = db!;
+    var timeMinimum = db!.map((m) => m['Waktu']).reduce((curr, next) => curr < next? curr: next);
+    var scoreMinimum = db.map((m) => m['Nilai']).reduce((curr, next) => curr < next? curr: next);
 
-    return results;
+    return [timeMinimum, scoreMinimum];
   }
 
   Future<List<dynamic>> getMaximum() async {
     final db = await database;
-    final List<dynamic> results = db!;
+    var timeMaximum = db!.map((m) => m['Waktu']).reduce((curr, next) => curr > next? curr: next);
+    var scoreMaximum = db.map((m) => m['Nilai']).reduce((curr, next) => curr > next? curr: next);
 
-    return results;
+    return [timeMaximum, scoreMaximum];
   }
 }

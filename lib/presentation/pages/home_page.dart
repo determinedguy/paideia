@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       drawer: const DrawerMenu(routeName),
       appBar: AppBar(
-        title: const Text('paideia'),
+        title: const Text('Daftar Siswa'),
       ),
       body: BlocProvider(
         create: (context) => studentListBloc,
